@@ -17,8 +17,8 @@ def check_variable(data):
     return False
 #aca
 def check_place(data):
-    r = requests.get(settings.PATH_VAR, headers={"Accept":"application/json"})
-    places = r.json()
+    p= requests.get(settings.PATH_PLA, headers={"Accept":"application/json"})
+    places = p.json()
     for place in places:
         if data["place"] == place["name"]:
             return True
@@ -51,7 +51,6 @@ def MeasurementsCreate(request):
         data_json = json.loads(data)
         measurement_list = []
         for measurement in data_json:
-            #aca
                     if check_variable(measurement) == True and check_place(data_json) == True:
                         db_measurement = Measurement()
                         db_measurement.variable = measurement['variable']
